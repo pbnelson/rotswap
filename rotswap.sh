@@ -11,13 +11,14 @@
 # 'SYNA7300:00 06CB:0E75' is the touch screen
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
-CHKFILE=/tmp/rotswap.flg
+xrandr -d :0.0 | grep "800 x 1280" >/dev/null
+ROTATED=$?
 
 # use `xinput --list` to get names of input devices
 TOUCHSCREEN='SYNA7300:00 06CB:0E75'
 TOUCHPAD='ITE Tech. Inc. ITE Device(8595) Touchpad'
 
-if [ -f $CHKFILE ]; then
+if [ $ROTATED -eq 0 ]; then
   rm $CHKFILE
   xrandr -o normal &
   xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 0 &
