@@ -10,7 +10,7 @@ An Ubuntu screen rotation script for the Acer Aspire Switch 10 SW5-012-16GW two-
 
 At that point, use the Ubuntu application menu to search for *rotation* then drag its icon onto the Unity Launcher (or onto desktop, if you prefer).
 
-That's it! There is no other installation required. The xrandr, xinput and gsettings commands used by the rotswap.sh script are all part of the standard Ubuntu installation.
+That's it! There is no other installation required. The xrandr, xinput and gsettings commands used by rotswap.sh are part of the standard Ubuntu installation.
 
 ## other systems
 
