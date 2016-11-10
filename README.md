@@ -14,4 +14,4 @@ That's it! There is no other installation required. The xrandr, xinput and gsett
 
 ## other systems
 
-It should be possible to adapt this script for other hardware. Simply use the `xinput --list` command to get the appropriate device name, and modify the shell script accordingly.
+It should be possible to adapt this script for other hardware. Simply use the `xinput --list` command to get the appropriate device names, and modify the shell script accordingly.
