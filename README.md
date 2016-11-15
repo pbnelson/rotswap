@@ -11,7 +11,7 @@ In addition to the screen rotating between portrait/landscape, the unity launche
 
 At that point, use the Ubuntu application menu to search for *Swap Screen Rotation* then drag its icon onto the Unity Launcher (or onto desktop, if you prefer). Here's a screenshot:
 
-![Launcher Screenshot](/img/screenshot#1.png)
+![Launcher Screenshot](img/screenshot#1.png)
 
 That's it! There is no other installation required. The xrandr, xinput and gsettings commands used by rotswap.sh are part of the standard Ubuntu installation.
 
