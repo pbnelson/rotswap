@@ -1,5 +1,7 @@
 # rotswap.sh
 
+<img src="./img/screenshot%232.png" width="300"> ... <img src="./img/screenshot%231.png" height="300">
+
 An Ubuntu screen rotation script for the Acer Aspire Switch 10 SW5-012-16GW two-in-one netbook/tablet hybrid. Running the script causes screen rotation to toggle between portrait (rotated right) and landscape (rotated normal) modes.
 
 In addition to the screen alternating between portrait/landscape, the unity launcher is moved and the axes are all correctly inverted: touchscreen, touchpad and mouse.
@@ -13,7 +15,7 @@ Download these two files, then copy them to the appropriate place:
 
 Next, use the Ubuntu application menu to search for *Swap Screen Rotation* and drag its icon onto the Unity Launcher (or the desktop if you prefer). Here's a screenshot:
 
-![Launcher Screenshot](./img/screenshot%231.png)
+<img src="./img/screenshot%231.png" height="400">
 
 That's it! There is no other installation required. The xrandr, xinput and gsettings commands used by rotswap.sh are in the standard Ubuntu distribution.
 
