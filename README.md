@@ -30,3 +30,7 @@ It should be easy to adapt this script for other hardware. Simply use the `xinpu
 ### bugs
 
 There is a Unity Launcher bug that ignores the StartupNotify=false setting. The consequence is that the icon will flash for seven seconds after clicking/pressing, and during that time it cannot be pressed again. As a practical matter, it is no big deal not being able to switch orientation more than once every seven seconds. If anyone knows how to fix, drop me a line, please, or even submit a pull request.
+
+### about my wallpaper
+
+This is the *Dormition of Mary*, by Duccio di Buoninsegna. I grabbed it off the 'net, and a copy is in the img folder.
