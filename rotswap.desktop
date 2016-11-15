@@ -1,6 +1,8 @@
 [Desktop Entry]
+StartupNotify=false
 Type=Application
 Terminal=false
 Name=Swap Screen Rotation
 Icon=/usr/share/unity/icons/kylin_login_activate.svg
-Exec=/bin/sh -c /home/canelson/rotswap.sh
+Exec=/usr/local/bin/rotswap.sh
+Categories=Utility;System
