@@ -19,7 +19,7 @@ That's it! There is no other installation required. The xrandr, xinput and gsett
 
 ## usage
 
-To use, simply click or press the arrow button. The screen will swap to portrait or landscape, and the touch-screen, touch-pad and mouse will all invert their axes as appropriate.
+To use, simply click or press the arrow button. The screen will swap to portrait or landscape, and the touch-screen, touch-pad and mouse will all invert their axes as appropriate. The unity launcher will remain adjacent to the hdmi port.
 
 ### other systems
 
