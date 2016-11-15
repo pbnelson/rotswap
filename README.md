@@ -1,6 +1,6 @@
-# rotswap.sh
-
 <img src="./img/screenshot%231.png" height="300"> ... <img src="./img/screenshot%232.png" width="300">
+
+# rotswap.sh
 
 An Ubuntu screen rotation script for the Acer Aspire Switch 10 SW5-012-16GW two-in-one netbook/tablet hybrid. Running the script causes screen rotation to toggle between portrait (rotated right) and landscape (rotated normal) modes.
 
@@ -33,4 +33,4 @@ There is a Unity Launcher bug that ignores the StartupNotify=false setting. The 
 
 ### about my wallpaper
 
-This is the *Dormition of Mary*, by Duccio di Buoninsegna. I grabbed it off the 'net, and a copy is in the img folder.
+This is the *Dormition of Mary*, by [Duccio di Buoninsegna](https://en.wikipedia.org/wiki/Duccio). I grabbed it off the 'net, and a copy is in the img folder.
