@@ -2,7 +2,7 @@
 
 An Ubuntu screen rotation script for the Acer Aspire Switch 10 SW5-012-16GW two-in-one netbook/tablet hybrid. Running the script causes screen rotation to toggle between portrait (rotated right) and landscape (rotated normal) modes.
 
-In addition to the screen alternating between portrait/landscape, the unity launcher is moved, and the axes are all correctly inverted for: touchscreen, touchpad and mouse.
+In addition to the screen alternating between portrait/landscape, the unity launcher is moved and the axes are all correctly inverted: touchscreen, touchpad and mouse.
 
 ## installation
 
