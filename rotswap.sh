@@ -11,6 +11,7 @@
 # 'SYNA7300:00 06CB:0E75' is the touch screen
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
+# see if screen is already rotated (portrait mode)
 xrandr -d :0.0 | grep "800 x 1280" >/dev/null
 ROTATED=$?
 
