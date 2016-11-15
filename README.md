@@ -13,7 +13,7 @@ Download these two files, then copy them to the appropriate place:
 
 Next, use the Ubuntu application menu to search for *Swap Screen Rotation* and drag its icon onto the Unity Launcher (or the desktop if you prefer). Here's a screenshot:
 
-![Launcher Screenshot](https://./img/screenshot%231.png)
+![Launcher Screenshot](https://github.com/./blob/master/img/screenshot%231.png)
 
 That's it! There is no other installation required. The xrandr, xinput and gsettings commands used by rotswap.sh are in the standard Ubuntu distribution.
 
