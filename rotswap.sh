@@ -11,23 +11,21 @@
 # 'SYNA7300:00 06CB:0E75' is the touch screen
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
-# see if screen is already rotated (portrait mode)
-xrandr -d :0.0 | grep "800 x 1280" >/dev/null
-ROTATED=$?
-
 # use `xinput --list` to get names of input devices
-TOUCHSCREEN='SYNA7300:00 06CB:0E75'
+TOUCHSCREEN=`xinput --list|egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}"`
 TOUCHPAD='ITE Tech. Inc. ITE Device(8595) Touchpad'
 
-if [ $ROTATED -eq 0 ]; then
-  rm $CHKFILE
+# get screen dimensions to determine current orientation portrait or landscape
+X=`xrandr --query|egrep -o "current \w{3,} x \w{3,}" | cut -f2 -d" "`
+Y=`xrandr --query|egrep -o "current \w{3,} x \w{3,}" | cut -f4 -d" "`
+
+if [ $Y -gt $X ]; then
   xrandr -o normal &
   xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 0 &
   xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 0 &
   xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1 &
   gsettings set com.canonical.Unity.Launcher launcher-position Left &
 else
-  touch $CHKFILE
   xrandr -o right &
   xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 1 &
   xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 1 &
