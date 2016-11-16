@@ -12,7 +12,7 @@
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
 # use `xinput --list` to get names of input devices
-TOUCHSCREEN=$(xinput --list|egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}")
+TOUCHSCREEN=$(xinput --list | egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}" | head -n 1)
 TOUCHPAD='ITE Tech. Inc. ITE Device(8595) Touchpad'
 
 # get screen dimensions to determine current orientation portrait or landscape
