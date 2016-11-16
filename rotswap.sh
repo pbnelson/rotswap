@@ -12,23 +12,33 @@
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
 # use `xinput --list` to get names of input devices
-TOUCHSCREEN=`xinput --list|egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}"`
+TOUCHSCREEN=$(xinput --list|egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}")
 TOUCHPAD='ITE Tech. Inc. ITE Device(8595) Touchpad'
 
 # get screen dimensions to determine current orientation portrait or landscape
-X=`xrandr --query|egrep -o "current \w{3,} x \w{3,}" | cut -f2 -d" "`
-Y=`xrandr --query|egrep -o "current \w{3,} x \w{3,}" | cut -f4 -d" "`
+X=$(xrandr --query | egrep -o "current \w{3,} x \w{3,}" | head -n 1 | cut -f2 -d ' ')
+Y=$(xrandr --query | egrep -o "current \w{3,} x \w{3,}" | head -n 1 | cut -f4 -d ' ')
 
+# get current brightness
+BRIGHTNESS=$(xrandr --verbose | grep Brightness | cut -f2 -d ' ')
+
+# get current screen name
+DISPLAY_NAME=$(xrandr --query | grep ' connected' |  head -n 1 | cut -d ' ' -f1)
+
+# finally, make adjustments
 if [ $Y -gt $X ]; then
-  xrandr -o normal &
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 0 &
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 0 &
-  xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1 &
-  gsettings set com.canonical.Unity.Launcher launcher-position Left &
+  xrandr --orientation normal
+  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 0 
+  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 0 
+  xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1
+  gsettings set com.canonical.Unity.Launcher launcher-position Left
 else
-  xrandr -o right &
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 1 &
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 1 &
-  xinput --set-prop "$TOUCHPAD"  'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1 &
-  gsettings set com.canonical.Unity.Launcher launcher-position Bottom &
+  xrandr --orientation right
+  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 1 
+  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 1 
+  xinput --set-prop "$TOUCHPAD"  'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1 
+  gsettings set com.canonical.Unity.Launcher launcher-position Bottom 
 fi
+
+# put screen brightness back to what it was
+xrandr --output $DISPLAY_NAME --brightness $BRIGHTNESS
