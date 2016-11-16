@@ -35,6 +35,8 @@ Now supports the 'SYNA7508:00 06CB:10EB' touchscreen or anything else having the
 
 Now retains screen brightness setting instead of always resetting to max.
 
+Now works correctly when touchpad is listed twice under `xinput`, as when separately listed as a Pen input.
+
 ### about my wallpaper
 
 This is the *Dormition of Mary*, by [Duccio di Buoninsegna](https://en.wikipedia.org/wiki/Duccio). I grabbed it off the 'net, and a copy is in the img folder.
