@@ -12,11 +12,31 @@
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
 # see if screen is already rotated (portrait mode)
-xrandr -d :0.0 | grep "800 x 1280" >/dev/null
-ROTATED=$?
+
+X=$(xrandr -q | awk -F'current' -F',' 'NR==1 {gsub("( |current)","");print $2}' | cut -dx -f1)
+Y=$(xrandr -q | awk -F'current' -F',' 'NR==1 {gsub("( |current)","");print $2}' | cut -dx -f2)
+
+ROTATED=1
+if [ $Y -gt $X ]; then
+  ROTATED=0
+fi
 
 # use `xinput --list` to get names of input devices
-TOUCHSCREEN='SYNA7300:00 06CB:0E75'
+TOUCHSCREEN1='SYNA7300:00 06CB:0E75'
+TOUCHSCREEN2='SYNA7508:00 06CB:10EB'
+
+xinput --list | grep "$TOUCHSCREEN1" >/dev/null
+RES=$?
+if [ $RES -eq 0 ]; then
+	TOUCHSCREEN="$TOUCHSCREEN1"
+fi
+
+xinput --list | grep "$TOUCHSCREEN2" >/dev/null
+RES=$?
+if [ $RES -eq 0 ]; then
+	TOUCHSCREEN="$TOUCHSCREEN2"
+fi
+
 TOUCHPAD='ITE Tech. Inc. ITE Device(8595) Touchpad'
 
 if [ $ROTATED -eq 0 ]; then
