@@ -25,9 +25,15 @@ To use, simply click or press the arrow button. The screen will swap to portrait
 
 It should be easy to adapt this script for other hardware. Simply use the `xinput --list` command to get the appropriate device names, and modify the shell script accordingly. You may have to alter the 800x1200 resolution grep to match your monitor dimensions.
 
-### bugs
+### bugs open
 
 There is a Unity Launcher bug that ignores the StartupNotify=false setting. The consequence is that the icon will flash for seven seconds after clicking/pressing, and during that time it cannot be pressed again. As a practical matter, it is no big deal not being able to switch orientation more than once every seven seconds. If anyone knows how to fix, drop me a line, please, or even submit a pull request.
+
+### bugs fixed
+
+Now supports the 'SYNA7508:00 06CB:10EB' touchscreen or anything else having the device name format 'SYNAxxxx:xx xxxx:xxxx'.
+
+Now retains screen brightness setting instead of always resetting to max.
 
 ### about my wallpaper
 
