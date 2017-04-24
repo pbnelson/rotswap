@@ -59,5 +59,4 @@ xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' $AXISINVERSION
 xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' $TRANSMATRIX
 
 # set ubuntu's unity launcher location
-# note that Cairo launcher automatically moves!
 gsettings list-schemas | grep "$ULSSNAME" && gsettings set "$ULSSNAME" launcher-position $ULSSPOSITION
