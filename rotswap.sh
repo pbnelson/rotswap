@@ -11,9 +11,12 @@
 # 'SYNA7300:00 06CB:0E75' is the touch screen
 # 'ITE Tech. Inc. ITE Device(8595) Touchpad' is the touchpad
 
-# use `xinput --list` to get names of input devices
-TOUCHSCREEN=$(xinput --list | egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}" | head -n 1)
-TOUCHPAD='ITE Tech. Inc. ITE Device(8595) Touchpad'
+# 2017-04-19, updated to support Acer Aspire R15 and hopefully
+# other devices as well (more generic).
+
+# get input device names using `xinput --list`
+TOUCHSCREEN=$(xinput --list --name-only | grep -i touchscreen | head -1)
+TOUCHPAD=$(xinput --list --name-only | grep -i touchpad | head -1)
 
 # get screen dimensions to determine current orientation portrait or landscape
 X=$(xrandr --query | egrep -o "current \w{3,} x \w{3,}" | head -n 1 | cut -f2 -d ' ')
@@ -25,20 +28,35 @@ BRIGHTNESS=$(xrandr --verbose | grep Brightness | cut -f2 -d ' ')
 # get current screen name
 DISPLAY_NAME=$(xrandr --query | grep ' connected' |  head -n 1 | cut -d ' ' -f1)
 
-# finally, make adjustments
-if [ $Y -gt $X ]; then
-  xrandr --orientation normal
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 0 
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 0 
-  xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1
-  gsettings set com.canonical.Unity.Launcher launcher-position Left
-else
-  xrandr --orientation right
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' 1 
-  xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' 0 1 
-  xinput --set-prop "$TOUCHPAD"  'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1 
-  gsettings set com.canonical.Unity.Launcher launcher-position Bottom 
+# handy variable for unity launcher's gnome-settings schema name
+ULSSNAME="gsettings set com.canonical.Unity.Launcher"
+
+# landscape/portrait mode settings
+if [ $Y -gt $X ]; then # if Y>X then portrait mode, so switch to landscape
+  ORIENTATION="normal"
+  AXESSWAP="0"
+  AXISINVERSION="0 0"
+  TRANSMATRIX="1 0 0 0 1 0 0 0 1"
+  ULSSPOSITION="Left"
+else # in lanscape mode, so switch to portrait
+  ORIENTATION="right"
+  AXESSWAP="1"
+  AXISINVERSION="0 1"
+  TRANSMATRIX="0 1 0 -1 0 1 0 0 1"
+  ULSSPOSITION="Bottom"
 fi
 
-# put screen brightness back to what it was
+# Finally! make all adjustments
+###############################
+
+# orientation and brightness
+xrandr --orientation $ORIENTATION
 xrandr --output $DISPLAY_NAME --brightness $BRIGHTNESS
+
+# axes swap, axis inversion and coordinate transformation
+xinput --set-prop "$TOUCHSCREEN" 'Evdev Axes Swap' $AXESSWAP
+xinput --set-prop "$TOUCHSCREEN" 'Evdev Axis Inversion' $AXISINVERSION
+xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' $TRANSMATRIX
+
+# set ubuntu's unity launcher location
+gsettings list-schemas | grep "$ULSSNAME" && gsettings set "$ULSSNAME" launcher-position $ULSSPOSITION
