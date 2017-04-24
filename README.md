@@ -37,6 +37,8 @@ Now retains screen brightness setting instead of always resetting to max.
 
 Now works correctly when touchpad is listed twice under `xinput`, as when separately listed as a Pen input.
 
+Now supports just about any touchpad/touchscreen name.
+
 ### about my wallpaper
 
 This is the *Dormition of Mary*, by [Duccio di Buoninsegna](https://en.wikipedia.org/wiki/Duccio). I grabbed it off the 'net, and a copy is in the img folder.
