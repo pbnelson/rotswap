@@ -3,6 +3,6 @@ StartupNotify=false
 Type=Application
 Terminal=false
 Name=Swap Screen Rotation
-Icon=/usr/share/unity/icons/kylin_login_activate.svg
+Icon=/usr/share/icons/Adwaita/256x256/actions/go-next.png
 Exec=/usr/local/bin/rotswap.sh
 Categories=Utility;System
