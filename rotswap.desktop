@@ -3,6 +3,6 @@ StartupNotify=false
 Type=Application
 Terminal=false
 Name=Swap Screen Rotation
-Icon=/usr/share/icons/Adwaita/256x256/actions/go-next.png
+Icon=/usr/share/icons/Adwaita/256x256/actions/go-jump.png
 Exec=/usr/local/bin/rotswap.sh
 Categories=Utility;System
