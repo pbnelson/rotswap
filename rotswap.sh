@@ -18,6 +18,12 @@
 TOUCHSCREEN=$(xinput --list --name-only | grep -i touchscreen | head -1)
 TOUCHPAD=$(xinput --list --name-only | grep -i touchpad | head -1)
 
+# if touchscreen variable is still null, search for it under the
+# name of SYNA7508 or SYN7300, but be careful not to get the pen
+if [ -z "$TOUCHSCREEN" ]; then
+  TOUCHSCREEN=$(xinput --list | egrep -o "SYNA\w{4}:\w{2} \w{4}:\w{4}" | grep -v Pen | head -n 1)
+fi
+
 # get screen dimensions to determine current orientation portrait or landscape
 X=$(xrandr --query | egrep -o "current \w{3,} x \w{3,}" | head -n 1 | cut -f2 -d ' ')
 Y=$(xrandr --query | egrep -o "current \w{3,} x \w{3,}" | head -n 1 | cut -f4 -d ' ')
