@@ -66,3 +66,6 @@ xinput --set-prop "$TOUCHPAD" 'Coordinate Transformation Matrix' $TRANSMATRIX
 
 # set ubuntu's unity launcher location
 gsettings list-schemas | grep "$ULSSNAME" && gsettings set "$ULSSNAME" launcher-position $ULSSPOSITION
+
+exit 0
+
